@@ -1,7 +1,7 @@
 Picade Alternative Firmware
 ===========================
 
-This is alternative firmware for the Picade PCB. The Picade is a 'bartop arcade cabinet' kickstarter project from Pimoroni: http://www.pimoroni.com/
+This is alternative firmware for the Picade PCB. The Picade is a 'bartop arcade cabinet' kickstarter project from Pimoroni: http://www.pimoroni.com/ This code is a private project, and not endorsed or supported by Pimoroni.
 
 The Picade PCB is an ATmega32U4 based breakout board sporting the Arduino 'Caterina-Leonardo' bootloader. This bootloader can be found here: https://github.com/arduino/Arduino
 
@@ -9,7 +9,7 @@ All Picade related designs and documents, including the original Arduino based f
 
 This firmware uses Dean Camera's LUFA library (2013-09-01) to simulate a 3 axes/16 button Joystick (only 2 axes are used), or a 162 keys/5 LED's multimedia keyboard (only 1 onboard LED is used). The latest version of the LUFA library can be found here: http://www.fourwalledcubicle.com/LUFA.php
 
-The Picade has 1 digital Joystick (4 inputs / 2 axes) and 12 buttons on the Maxi (10 on the Mini). There are 4 free inputs on the PCB available (6 on the Mini). In this firmware, these inputs are also being monitored and sent with the USB report. Add buttons to these pins, and they'll give a response.
+The Picade has 1 digital Joystick (4 inputs / 2 axes) and 8+4=12 buttons on the Maxi (6+4=10 on the Mini). There are 4 free pins on the PCB available (6 on the Mini). In this firmware, these pins are being monitored as inputs and sent with the USB report. Add buttons to these pins, and they'll give a response.
 
 Pinout
 ------
@@ -63,7 +63,7 @@ Install avrdude (the tool that uploads the firmware to the microcontroller) from
 
     sudo apt-get install avrdude
 
-With a USB cable, plug the Picade PCB in the computer where you just installed avrdude and cd to the 'picade_lufa/bin' directory where the prebuilt firmware is.
+With a USB cable, plug the Picade PCB in the computer where you just installed avrdude and cd to the 'picade_lufa/bin/' directory where the prebuilt firmware is.
 
     cd path/to/picade_lufa/bin/
 
@@ -81,8 +81,8 @@ After successful uploading (avrdude done. Thank you.), you may have to unplug th
 
 You're done.
 
-Build firmware
---------------
+Build and upload firmware
+-------------------------
 To compile the firmware yourself, you need to install the AVR toolchain:
 
     sudo apt-get install binutils-avr gcc-avr avr-libc avrdude
