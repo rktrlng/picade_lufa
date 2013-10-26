@@ -1,0 +1,29 @@
+#!/bin/bash
+
+DEVICE=atmega32u4
+HEXPROGRAMMER=avr109
+PORT=/dev/ttyACM0
+FUSEPROGRAMMER=usbtiny
+
+# To burn the Arduino Leonardo bootloader, download 'Caterina-Leonardo.hex' to the 'bin' directory
+# wget https://raw.github.com/arduino/Arduino/master/hardware/arduino/bootloaders/caterina/Caterina-Leonardo.hex
+
+if [ ! $# == 1 ]; then
+  echo "Usage:"
+  echo "./upload <hexfile>"
+  echo "or (with a hardware programmer)"
+  echo "./upload fuse  # burns Arduino Leonardo fuses"
+  echo "./upload bootloader  # burns Arduino Leonardo bootloader"
+  exit
+fi
+
+if [ "$1" == fuse ]; then
+    echo "Burning Arduino Leonardo fuses ..."
+    avrdude -c $FUSEPROGRAMMER -p $DEVICE -v -U lfuse:w:0xde:m -U hfuse:w:0xd8:m -U efuse:w:0xcb:m
+elif [ "$1" == bootloader ]; then
+    echo "Burning Arduino Leonardo Bootloader ..."
+    avrdude -c $FUSEPROGRAMMER -p $DEVICE -v -U flash:w:Caterina-Leonardo.hex:i
+else
+    echo "Uploading hex file:" $1
+    avrdude -v -c $HEXPROGRAMMER -p $DEVICE -P $PORT -U flash:w:$1:i
+fi
