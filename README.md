@@ -7,7 +7,13 @@ The Picade PCB is an ATmega32U4 based breakout board sporting the Arduino 'Cater
 
 All Picade related designs and documents, including the original Arduino based firmware and schematics for the PCB can be found here: https://github.com/pimoroni/picade
 
-This firmware uses Dean Camera's LUFA library (2013-09-01) to simulate a 3 axes/16 button Joystick (only 2 axes are used), or a 162 keys/5 LED's multimedia keyboard (only 1 onboard LED is used). The latest version of the LUFA library can be found here: http://www.fourwalledcubicle.com/LUFA.php
+This firmware uses Dean Camera's LUFA library (2013-09-01) and has 3 project directories:
+
+- **Joystick**: a 3 axes/16 button Joystick (only 2 axes are used)
+- **Keyboard**: a 162 keys/5 LED's multimedia keyboard (only 1 onboard LED is used)
+- **KeyboardMouse**: actually 2 USB devices, a Keyboard and a 3 button Mouse (only 2 buttons used, LMB & RMB)
+
+The latest version of the LUFA library can be found here: http://www.fourwalledcubicle.com/LUFA.php
 
 The Picade has 1 digital Joystick (4 inputs / 2 axes) and 8+4=12 buttons on the Maxi (6+4=10 on the Mini). There are 4 free pins on the PCB available (6 on the Mini). In this firmware, these pins are being monitored as inputs and sent with the USB report. Add buttons to these pins, and they'll give a response.
 
@@ -16,13 +22,13 @@ Pinout
 
     Picade        ATmega Func      JoyValue     Key      Type           Usage
 
-    JOYSTICK U    PB0    SS        -100 or 0    Up       digital in     Joy Y \__ ABS Y
+    JOYSTICK U    PB0    SS        -100 or 0    Up       digital in     Joy Y \__ Y / Mouse
     JOYSTICK D    PB1    SCLK      0 or 100     Down     digital in     Joy Y /
-    JOYSTICK L    PB2    MOSI      -100 or 0    Left     digital in     Joy X \__ ABS X
+    JOYSTICK L    PB2    MOSI      -100 or 0    Left     digital in     Joy X \__ X / Mouse
     JOYSTICK R    PB3    MISO      0 or 100     Right    digital in     Joy X /
 
-    UTIL START    PD0    SCL       0 or 1       1        digital in     START
-    UTIL SELECT   PD1    SDA       0 or 1       5        digital in     SELECT
+    UTIL START    PD0    SCL       0 or 1       1        digital in     START / LMB
+    UTIL SELECT   PD1    SDA       0 or 1       5        digital in     SELECT / RMB
     UTIL ENTER    PD2    RXD       0 or 1       ENTER    digital in     ENTER
     UTIL ESC      PD3    TXD       0 or 1       ESC      digital in     ESC
 
@@ -77,6 +83,10 @@ or, if you prefer the Picade PCB to behave as a keyboard:
 
     sudo ./upload Keyboard.hex
 
+or both a mouse and a keyboard:
+
+    sudo ./upload KeyboardMouse.hex
+
 After successful uploading (avrdude done. Thank you.), you may have to unplug the USB cable and plug it back in, to make sure your new USB device actually enumerates. Usually it just works though.
 
 You're done.
@@ -95,7 +105,7 @@ To build the Joystick firmware, run the makefile in the Joystick project directo
     [press reset button to enter bootloader]
     sudo make avrdude
 
-The same applies to the Keyboard firmware.
+The same applies to the Keyboard and KeyboardMouse firmware.
 
 When you compile the firmware yourself, the hex file is NOT automatically copied to the 'bin' directory. So the hex files in the 'bin' directory are out of date.
 
@@ -131,6 +141,7 @@ In the list of USB devices you should see one of these lines:
 
     Bus xxx Device xxx: ID 03eb:2042 Atmel Corp. LUFA Keyboard Demo Application
     Bus xxx Device xxx: ID 03eb:2043 Atmel Corp. LUFA Joystick Demo Application
+    Bus xxx Device xxx: ID 03eb:204d Atmel Corp. LUFA Combined Mouse and Keyboard Demo Application
 
 When the device is in bootloader mode it will identify itself with:
 

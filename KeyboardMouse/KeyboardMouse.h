@@ -28,13 +28,8 @@
   this software.
 */
 
-/** \file
- *
- *  Header file for Keyboard.c.
- */
-
-#ifndef _KEYBOARD_H_
-#define _KEYBOARD_H_
+#ifndef _KEYBOARD_MOUSE_H_
+#define _KEYBOARD_MOUSE_H_
 
 	/* Includes: */
 		#include <avr/io.h>
