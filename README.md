@@ -46,8 +46,8 @@ Pinout
     GPIO #5       PB6    ADC13*    0 or 1       K        digital in     - (free)
     GPIO #6       PC6    PWM       0 or 1       L        digital in     - (free)
     
-    LEDS_LED1     PD5    XCK1/CTS  0 or 1       -        digital out    ONBOARD LED1
-    // LEDS_LED2     PD7    ADC10*    0 or 1       -        digital out    ONBOARD LED2
+    LEDS_LED1     PD5    XCK1/CTS  0 or 1       -        digital out    ONBOARD LED1 (TX)
+    // LEDS_LED2     PD7    ADC10*    0 or 1       -        digital out    ONBOARD LED2 (RX)
                          * Also has PWM
 
 At the moment, this firmware only drives the status LED on pin D5. The LED on pin D7 is also attached to (and used as) an input, so this LED is only useful in bootloader mode. In other words, LEDS_LED2 and GPIO #2 are on the same pin. LEDS_LED2 is disabled. It's assumed you're using all the available pins as inputs. Don't press any buttons while in bootloader mode and/or uploading firmware!
@@ -62,6 +62,13 @@ You are up to scratch with the latest fashion, aren't you?
     sudo apt-get upgrade
 
 Good!
+
+Download this project by clicking the "Download zip" button on github: https://github.com/rktrlng/picade_lufa and unzip it to a place were you want to keep it.
+
+Or if you want to use git (and don't have it installed):
+
+    sudo apt-get install git
+    git clone https://github.com/rktrlng/picade_lufa
 
 Upload prebuilt firmware
 ------------------------
