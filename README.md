@@ -56,7 +56,7 @@ Getting started
 ---------------
 This assumes you run a Debian based Linux OS, such as Raspbian on the Raspberry Pi or Ubuntu on an x86 or ARM machine. All tools needed are also available for Windows and Mac, but you're on your own there.
 
-You are up to scratch with the latest fashion, aren't you?
+You are up to date, aren't you?
 
     sudo apt-get update
     sudo apt-get upgrade
@@ -65,7 +65,7 @@ Good!
 
 Download this project by clicking the "Download zip" button on github: https://github.com/rktrlng/picade_lufa and unzip it to a place were you want to keep it.
 
-Or if you want to use git (and don't have it installed):
+Alternatively, if you want to use git (and don't have it installed):
 
     sudo apt-get install git
     git clone https://github.com/rktrlng/picade_lufa
@@ -80,7 +80,7 @@ With a USB cable, plug the Picade PCB in the computer where you just installed a
 
     cd path/to/picade_lufa/bin/
 
-To upload prebuilt firmware to the Picade, run the 'upload' script in the 'bin' directory and supply the name of the firmware from that same directory (either 'Joystick.hex' or 'Keyboard.hex').
+To upload prebuilt firmware to the Picade, run the 'upload' script in the 'bin' directory and supply the name of the firmware from that same directory (either 'Joystick.hex', 'Keyboard.hex' or 'KeyboardMouse.hex').
 
 Press the reset button on the Picade PCB to start the bootloader. You have 10 seconds to run the script, before the bootloader times out. If that fails because you're slow (there's a complaint about /dev/ttyACM0), press enter or ctrl-c to return to a prompt, reset the board to bootloader mode and try again:
 
@@ -134,7 +134,7 @@ To burn the Caterina-Leonardo bootloader (use your hardware programmer again):
 
 Gordon's patched avrdude on Raspberry Pi
 ----------------------------------------
-A little warning if you have used "Gordon's patched avrdude" with the Raspberry Pi GPIO pins to program Atmel microcontrollers (on a Gertboard maybe). Uploading using the USB bootloader doesn't work with (the otherwise awesome) patched avrdude on the Raspberry Pi. It seems to work, but it doesn't. Not when I tried, at least.
+A little warning if you have used "Gordon's patched avrdude" with the Raspberry Pi GPIO pins to program Atmel microcontrollers (on a Gertboard maybe). Uploading using the USB bootloader doesn't work with the (otherwise awesome) patched avrdude on the Raspberry Pi. It seems to work, but it doesn't. Not when I tried, at least.
 
 If you just followed the instructions above and installed avrdude from the repositories, your setup will work (also on a Raspberry Pi). 
 
